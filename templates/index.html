@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Automata and Regex Tester</title>
+  
+  <link rel="stylesheet" href="../static/css/styles.css">
+</head>
+<body>
+  <div class="navbar">
+    <a href="#" class="active">Menu1</a>
+    <a href="#">Menu2</a>
+    <a href="#">Menu3</a>
+    <a href="#">Menu4</a>
+    <a href="#">Menu5</a>
+  </div>
+
+  <div class="container">
+    <h1>Automata and Regex Tester</h1>
+    
+    <!-- Buttons to select type -->
+    <div id="selectButtons">
+      <button id="dfaBtn">DFA</button>
+      <button id="nfaBtn">NFA</button>
+      <button id="enfaBtn">e-NFA</button>
+      <button id="regexBtn">Regex</button>
+    </div>
+
+    <!-- Div for images -->
+    <div id="imageContainer" class="image-container">
+      <!-- Images for DFA, NFA, and others -->
+      <img id="dfaImage" class="image" src="../static/img/dfa.png" alt="DFA Image">
+      <img id="nfaImage" class="image" src="../static/img/nfa.png" alt="NFA Image">
+      <img id="enfaImage" class="image" src="../static/img/enfa.png" alt="e-NFA Image">
+      <img id="regexImage" class="image" src="../static/img/regex.png" alt="Regex Image">
+        <!-- Button for editing -->
+  <button class="editButton">Edit</button>
+    </div>
+
+    <div id="result">
+      <!-- Add more images for other types if needed -->
+      <div id="resultText"></div>
+    </div>
+
+    <!-- Form to input string -->
+    <form action="/update_dfa" id="testForm">
+      <input type="hidden" id="selectType" name="selectType"> <!-- Menambahkan input tersembunyi -->
+      <label for="inputString">Input String:</label>
+      <input type="text" id="inputString" required>
+      <br><br>
+      <button type="submit">Test</button>
+    </form> 
+  </div>
+  
+  <!-- JavaScript to handle form submission and testing -->
+  <script src="../static/js/script.js" type="module"></script>
+  
+</body>
+</html>
