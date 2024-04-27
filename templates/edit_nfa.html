@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit NFA</title>
+</head>
+<body>
+  <h1>Edit NFA</h1>
+  <form action="/update_nfa" id="editNfaForm" method="post">
+    <label for="transitions">Transitions:</label><br>
+    <!-- Menampilkan nilai variabel nfa -->
+    <input type="text" id="nfa" name="nfa"><br>
+    <label for="startStates">Start States:</label><br>
+    <!-- Menampilkan nilai variabel startStates -->
+    <input type="text" id="startStates" name="startStates"><br>
+    <label for="acceptingStates">Accepting States:</label><br>
+    <!-- Menampilkan nilai variabel acceptingStates -->
+    <input type="text" id="acceptingStates" name="acceptingStates"><br><br>
+    <button type="submit" id="saveButton">Save</button>
+  </form>
+
+  <script src="../static/js/edit_nfa.js" type="module"></script>
+</body>
+</html>

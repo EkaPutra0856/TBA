@@ -159,13 +159,63 @@ buttons.forEach(button => {
   });
 });
 
-// Ambil tombol "Edit" dengan menggunakan ID atau kelas yang sesuai
-const editButton = document.querySelector('.editButton');
+// Sembunyikan tombol "Edit" secara default
+const editButton1 = document.querySelector('.editButton1');
+const editButton2 = document.querySelector('.editButton2');
+const editButton3 = document.querySelector('.editButton3');
+const editButton4 = document.querySelector('.editButton4');
+
+editButton1.style.display = 'none';
+editButton2.style.display = 'none';
+editButton3.style.display = 'none';
+editButton4.style.display = 'none';
+
+// Tambahkan event listener ke tombol "DFA"
+document.getElementById('dfaBtn').addEventListener('click', function() {
+  // Menampilkan tombol "Edit" ketika tombol "DFA" diklik
+  editButton1.style.display = 'block';
+  editButton2.style.display = 'none';
+  editButton3.style.display = 'none';
+  editButton4.style.display = 'none';
+
+});
+
+// Tambahkan event listener ke tombol "NFA"
+document.getElementById('nfaBtn').addEventListener('click', function() {
+  // Menyembunyikan tombol "Edit" ketika tombol "NFA" diklik
+  editButton1.style.display = 'none';
+  editButton2.style.display = 'block';
+  editButton3.style.display = 'none';
+  editButton4.style.display = 'none';
+});
+
+// Tambahkan event listener ke tombol "e-NFA"
+document.getElementById('enfaBtn').addEventListener('click', function() {
+  // Menyembunyikan tombol "Edit" ketika tombol "e-NFA" diklik
+  editButton1.style.display = 'none';
+  editButton2.style.display = 'none';
+  editButton3.style.display = 'block';
+  editButton4.style.display = 'none';
+});
+
+// Tambahkan event listener ke tombol "Regex"
+document.getElementById('regexBtn').addEventListener('click', function() {
+  // Menyembunyikan tombol "Edit" ketika tombol "Regex" diklik
+  editButton1.style.display = 'none';
+  editButton2.style.display = 'none';
+  editButton3.style.display = 'none';
+  editButton4.style.display = 'block';
+});
 
 // Tambahkan event listener untuk menangkap klik pada tombol "Edit"
-editButton.addEventListener('click', () => {
+editButton1.addEventListener('click', () => {
   // Pindahkan halaman ke laman edit DFA
   window.location.href = 'edit_dfa'; // Ganti dengan URL laman edit DFA yang sesuai
+});
+
+editButton2.addEventListener('click', () => {
+  // Pindahkan halaman ke laman edit DFA
+  window.location.href = 'edit_nfa'; // Ganti dengan URL laman edit DFA yang sesuai
 });
 
 
