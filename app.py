@@ -5,6 +5,7 @@ import json
 import sys
 import os
 import graphviz
+import re
 
 
 
@@ -141,6 +142,109 @@ def update_nfa():
         return str(e), 500
 
 
-if __name__ == '__main__':
-    logging.basicConfig(level=logging.DEBUG)  # Aktifkan logging debug
+@app.route('/edit_enfa')
+def edit_enfa():
+    return render_template('edit_enfa.html')
+
+# Endpoint untuk menampilkan nilai ENFA
+@app.route('/get_enfa', methods=['GET'])
+def get_enfa():
+    try:
+        # Baca nilai-nilai saat ini dari file nfa.js
+        with open('static/js/no5/enfa.js', 'r') as f:
+            current_data = f.read()
+        
+        # Ubah data saat ini menjadi objek JSON
+        current_values = json.loads(current_data.strip().strip(';'))
+        
+        return jsonify(current_values), 200
+    except Exception as e:
+        return str(e), 500
+    
+@app.route('/update_enfa', methods=['POST'])
+def update_enfa():
+    try:
+        current_data = ''  # Inisialisasi current_data sebelum digunakan
+
+        # Ambil data JSON dari permintaan POST
+        data = request.form
+        enfa = eval(request.form.get('enfa'))
+        logging.debug(f"enfa: {enfa}")
+        start_states = data.get('startStates')
+        logging.debug(f"start states: {start_states}")
+        accepting_states = eval(data.get('acceptingStates'))
+        logging.debug(f"accepting states: {accepting_states}")
+
+        # Baca nilai-nilai saat ini dari file enfa.js
+        with open('static/js/no5/enfa.js', 'r') as f:
+            current_data = f.read()
+
+        # Ubah nilai-nilai ENFA dalam current_data tanpa mengubah ε
+        current_data = re.sub(r"enfa\s*:\s*{([^}]*)}", r"enfa: {\1}".replace("0", "'0'").replace("1", "'1'"), current_data)
+        current_data = current_data.replace("' '", "'ε'")  # Mengganti karakter kosong dengan simbol epsilon
+
+        # Saat menyimpan nilai-nilai ENFA dalam file enfa.js
+        with open('static/js/no5/enfa.js', 'w') as f:
+            f.write('const enfa = ' + str(enfa).replace("'ε'", "''") + ';\n')
+            f.write('const startStateENFA = ' + str(start_states) + ';\n')
+            f.write('const acceptingStatesENFA = ' + str(accepting_states) + ';\n')  
+            f.write('export { enfa, startStateENFA, acceptingStatesENFA };')
+        
+        dot = graphviz.Digraph()
+
+
+        # Add nodes
+        for state in enfa.keys():
+            if state in start_states:
+                dot.node(state, shape='circle', xlabel='Start')
+            elif state in accepting_states:
+                dot.node(state, shape='doublecircle')
+            else:
+                dot.node(state)
+        
+        # Add edges
+        for state, transitions in enfa.items():
+            for symbol, next_states in transitions.items():
+                for next_state in next_states:
+                    if symbol == "":
+                         symbol = "ε"  # Ganti simbol kosong dengan epsilon
+                    dot.edge(state, next_state, label=symbol)
+      
+        dot.render("static/img/enfa", format='png', cleanup=True)
+
+        return render_template('index.html')
+    except Exception as e:
+        return str(e), 500
+
+
+# Regular expression pattern
+regex_pattern = ""
+
+# Render the page for editing the regular expression
+@app.route('/edit_regex')
+def edit_regex():
+    return render_template('edit_regex.html', regex_pattern=regex_pattern)
+
+# Rute untuk menampilkan nilai regexPattern saat ini
+@app.route('/get_regex_pattern', methods=['GET'])
+def get_regex_pattern():
+    global regexPattern
+    return {"regexPattern": regexPattern}, 200
+
+# Rute untuk memperbarui nilai regexPattern
+@app.route('/update_regex_pattern', methods=['POST'])
+def update_regex_pattern():
+    global regexPattern
+    newPattern = request.json.get('regexPattern')
+    regexPattern = newPattern
+    return "Regex pattern updated successfully", 200
+
+@app.route('/clear_and_rewrite_regex_js', methods=['POST'])
+def clear_and_rewrite_regex_js():
+    newPattern = request.json.get('regexPattern')
+    with open('static/js/regex.js', 'w') as f:
+        f.write(f"const regexPattern = {newPattern};\nexport {{ regexPattern }};")
+    return "Regex.js file cleared and rewritten successfully", 200
+
+if __name__ == "__main__":
     app.run(debug=True)

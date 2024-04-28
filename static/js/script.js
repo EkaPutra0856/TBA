@@ -32,18 +32,23 @@ function testENFA(inputString) {
   let epsilonClosure = []; // Simpan keadaan dalam epsilon-closure
   
   // Fungsi untuk menambahkan keadaan dalam epsilon-closure
-  function addToEpsilonClosure(state) {
-    epsilonClosure.push(state);
-    const epsilonTransitions = enfa[state]['ε'] || []; // Transisi epsilon
-    epsilonTransitions.forEach(nextState => {
-      if (!epsilonClosure.includes(nextState)) {
-        addToEpsilonClosure(nextState);
+  function addToEpsilonClosure(states) {
+    states.forEach(state => {
+      if (!epsilonClosure.includes(state)) {
+        epsilonClosure.push(state);
+        const epsilonTransitions = enfa[state][''] || []; // Transisi epsilon
+        addToEpsilonClosure(epsilonTransitions);
       }
     });
   }
+
+  // Fungsi untuk menambahkan ke state penolakan
+  function addToRejectState() {
+    currentStates = ['REJECT_STATE'];
+  }
   
   // Inisialisasi epsilon-closure dari start state
-  addToEpsilonClosure(startStateENFA);
+  addToEpsilonClosure([startStateENFA]);
   currentStates.push(...epsilonClosure);
   epsilonClosure = []; // Kosongkan epsilon-closure
   
@@ -54,15 +59,29 @@ function testENFA(inputString) {
       nextStates.push(...transitions);
     }
     // Tambahkan keadaan dalam epsilon-closure dari setiap keadaan pada nextStates
-    nextStates.forEach(state => {
-      addToEpsilonClosure(state);
-    });
+    addToEpsilonClosure(nextStates);
     currentStates = [...new Set(epsilonClosure)]; // Hapus duplikat dari epsilon-closure
     epsilonClosure = []; // Kosongkan epsilon-closure
+
+    // Jika tidak ada transisi eksplisit, tambahkan ke state penolakan
+    if (nextStates.length === 0) {
+      addToRejectState();
+      break; // Berhenti jika sudah ditambahkan ke state penolakan
+    }
   }
   // Uji keadaan yang dicapai apakah ada di accepting states
-  return currentStates.some(state => acceptingStatesENFA.includes(state)); // Menggunakan accepting states dari enfa.js
+  const isAccepted = currentStates.some(state => acceptingStatesENFA.includes(state)); // Menggunakan accepting states dari enfa.js
+
+  // Jika input string selesai dibaca dan masih ada di state penolakan, maka reject
+  if (currentStates.includes('REJECT_STATE')) {
+    return false;
+  }
+
+  return isAccepted;
 }
+
+
+
 
 
 // Function to test Regular Expression
@@ -218,6 +237,14 @@ editButton2.addEventListener('click', () => {
   window.location.href = 'edit_nfa'; // Ganti dengan URL laman edit DFA yang sesuai
 });
 
+editButton3.addEventListener('click', () => {
+  // Pindahkan halaman ke laman edit DFA
+  window.location.href = 'edit_enfa'; // Ganti dengan URL laman edit DFA yang sesuai
+});
 
+editButton4.addEventListener('click', () => {
+  // Pindahkan halaman ke laman edit DFA
+  window.location.href = 'edit_regex'; // Ganti dengan URL laman edit DFA yang sesuai
+});
 
 
