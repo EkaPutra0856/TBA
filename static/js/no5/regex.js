@@ -1,5 +1,2 @@
-// regex.js
-
-const regexPattern =  /a+b*ab/;
-
+const regexPattern = /a+aba*bc/;
 export { regexPattern };

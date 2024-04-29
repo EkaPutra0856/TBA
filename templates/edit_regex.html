@@ -7,10 +7,10 @@
 </head>
 <body>
   <h1>Edit Regex</h1>
-  <form action="/update_regex_pattern" id="editRegexForm">
+  <form action="/update_regex_pattern" method="post" id="editRegexForm">
     <label for="regexPattern">Pattern:</label><br>
     <input type="text" id="regexPattern" name="regexPattern"><br><br>
-    <button type="button" id="saveButton">Save</button>
+    <button type="submit" id="saveButton">Save</button>
   </form>
 
   <script src="../static/js/edit_regex.js" type="module"></script>

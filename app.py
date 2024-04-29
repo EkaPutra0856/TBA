@@ -1,11 +1,13 @@
 
-from flask import Flask, render_template, jsonify, request, redirect, url_for
+from flask import Flask, render_template, jsonify, request, redirect, url_for, send_from_directory
 import logging
 import json
 import sys
 import os
 import graphviz
 import re
+from static.py.convertENFA import convertToNFA, remove_slashes
+from static.py.visualize import visualize_nfa
 
 
 
@@ -13,7 +15,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('mainmenu.html')
 
 @app.route('/edit_dfa')
 def editdfa():
@@ -217,34 +219,32 @@ def update_enfa():
         return str(e), 500
 
 
-# Regular expression pattern
-regex_pattern = ""
-
 # Render the page for editing the regular expression
 @app.route('/edit_regex')
 def edit_regex():
-    return render_template('edit_regex.html', regex_pattern=regex_pattern)
-
-# Rute untuk menampilkan nilai regexPattern saat ini
-@app.route('/get_regex_pattern', methods=['GET'])
-def get_regex_pattern():
-    global regexPattern
-    return {"regexPattern": regexPattern}, 200
+    return render_template('edit_regex.html')
 
 # Rute untuk memperbarui nilai regexPattern
 @app.route('/update_regex_pattern', methods=['POST'])
 def update_regex_pattern():
-    global regexPattern
-    newPattern = request.json.get('regexPattern')
-    regexPattern = newPattern
-    return "Regex pattern updated successfully", 200
+    try:
+        newPattern = request.form.get('regexPattern')
+        logging.debug(f"Regex : {newPattern}")
+        with open('static/js/no5/regex.js', 'w') as f:
+            f.write(f"const regexPattern = {newPattern};\nexport {{ regexPattern }};")
+        
+        newPattern = remove_slashes(newPattern)
+        enfa = convertToNFA(newPattern)
+        
+        visualize_nfa(enfa)
 
-@app.route('/clear_and_rewrite_regex_js', methods=['POST'])
-def clear_and_rewrite_regex_js():
-    newPattern = request.json.get('regexPattern')
-    with open('static/js/regex.js', 'w') as f:
-        f.write(f"const regexPattern = {newPattern};\nexport {{ regexPattern }};")
-    return "Regex.js file cleared and rewritten successfully", 200
-
+        return render_template('index.html')
+    
+    except Exception as e:
+        return str(e), 500
+  
+@app.route('/menu2')
+def menu2():
+    return render_template('edit_regex.html')
 if __name__ == "__main__":
     app.run(debug=True)
