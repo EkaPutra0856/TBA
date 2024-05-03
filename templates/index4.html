@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DFA Equivalence Simulator</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      margin-top: 5vh;
+      background-color: #f0f0ff;
+    }
+
+    .container {
+      max-width: 800px;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background-color: #ffffff;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn {
+      margin-right: 5px;
+      color: white;
+      background-color: blue;
+    }
+
+    .input-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="submit"] {
+      padding: 8px;
+      width: calc(100% - 16px);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th,
+    td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .mt-3 {
+      margin-top: 1rem;
+    }
+
+    .mb-5 {
+      margin-bottom: 3rem;
+    }
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      margin-left: -15px;
+      margin-right: -15px;
+    }
+
+    .col-5 {
+      flex: 0 0 41.66667%;
+      max-width: 41.66667%;
+      padding-left: 15px;
+      padding-right: 15px;
+      box-sizing: border-box;
+    }
+
+    .justify-content-evenly {
+      justify-content: space-between;
+    }
+  </style>
+</head>
+
+<body>
+  {% include 'navbar.html' %}
+  <div class="container">
+    <h1 class="text-center mt-3">DFA Equivalence Simulator</h1>
+    {% if result is defined %}
+    <div class="container text-center">
+      <h3 class="mt-3 fw-bold" id="result">Result</h3>
+      <h4 class="mt-3 fw-bold mb-5" id="result">{{ result }}</h4>
+      <div class="row justify-content-evenly">
+        <h4 class="col-5">Graphic of DFA 1</h4>
+        <h4 class="col-5">Graphic of DFA 2</h4>
+      </div>
+      <div class="row justify-content-evenly mb-5">
+        <img class="col-5" id="DFA1" src="{{ url_for('static', filename='DFA1.png') }}" alt="DFA1">
+        <img class="col-5" id="DFA2" src="{{ url_for('static', filename='DFA2.png') }}" alt="DFA2">
+    </div>
+    
+      <a href="/">Back</a>
+    </div>
+    {% else %}
+    <form action="/menu4" id="dfaForm" method="post" class="mt-4">
+      <h3>DFA 1</h3>
+      <div class="input-group">
+        <label for="states1">States:</label>
+        <input type="text" id="states1" name="states1" placeholder="Enter states">
+      </div>
+      <div class="input-group">
+        <label for="symbol1">Input Symbols:</label>
+        <input type="text" id="symbol1" name="symbol1" placeholder="Enter input symbols">
+      </div>
+      <div class="input-group">
+        <label for="initialState1">Initial State:</label>
+        <input type="text" id="initialState1" name="initialState1" placeholder="Enter initial state">
+      </div>
+      <div class="input-group">
+        <label for="finalStates1">Final States:</label>
+        <input type="text" id="finalStates1" name="finalStates1" placeholder="Enter final states">
+      </div>
+      <div id="transitions1"></div>
+
+      <h3 class="mt-4">DFA 2</h3>
+      <div class="input-group">
+        <label for="states2">States:</label>
+        <input type="text" id="states2" name="states2" placeholder="Enter states">
+      </div>
+      <div class="input-group">
+        <label for="symbol2">Input Symbols:</label>
+        <input type="text" id="symbol2" name="symbol2" placeholder="Enter input symbols">
+      </div>
+      <div class="input-group">
+        <label for="initialState2">Initial State:</label>
+        <input type="text" id="initialState2" name="initialState2" placeholder="Enter initial state">
+      </div>
+      <div class="input-group">
+        <label for="finalStates2">Final States:</label>
+        <input type="text" id="finalStates2" name="finalStates2" placeholder="Enter final states">
+      </div>
+      <div id="transitions2"></div>
+
+      <input type="submit" value="Check Both DFA" class="btn btn-primary mt-3 mb-4">
+    </form>
+    {% endif %}
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      document.getElementById("symbol1").addEventListener("change", function () {
+        updateTransitions("transitions1", "states1", "symbol1");
+      });
+
+      document.getElementById("symbol2").addEventListener("change", function () {
+        updateTransitions("transitions2", "states2", "symbol2");
+      });
+
+      function updateTransitions(transitionsId, statesId, symbolId) {
+        var symbol = document.getElementById(symbolId).value.split(" ");
+        var states = document.getElementById(statesId).value.split(" ");
+        var transitionsDiv = document.getElementById(transitionsId);
+        transitionsDiv.innerHTML = "";
+
+        states.forEach(function (state) {
+          var stateLabel = document.createElement("p");
+          stateLabel.textContent = "State: " + state;
+          transitionsDiv.appendChild(stateLabel);
+
+          symbol.forEach(function (symbolItem) {
+            var inputGroup = document.createElement("div");
+            inputGroup.classList.add("input-group");
+            var label = document.createElement("label");
+            label.textContent = "Transition from state " + state + " with symbol " + symbolItem + ":";
+            inputGroup.appendChild(label);
+            var input = document.createElement("input");
+            input.type = "text";
+            input.name = "transitions" + transitionsId.substr(-1) + "_" + state + "_" + symbolItem;
+            input.placeholder = "Enter transition for state " + state + " with symbol " + symbolItem;
+            inputGroup.appendChild(input);
+            transitionsDiv.appendChild(inputGroup);
+          });
+        });
+      }
+    });
+  </script>
+</body>
+
+</html>

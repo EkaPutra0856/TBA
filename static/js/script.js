@@ -84,11 +84,24 @@ function testENFA(inputString) {
 
 
 
-// Function to test Regular Expression
+// // Function to test Regular Expression
+// function testRegex(inputString, regexPattern) {
+//   const regex = new RegExp(regexPattern);
+//   return regex.test(inputString);
+// }
+
 function testRegex(inputString, regexPattern) {
-  const regex = new RegExp(regexPattern);
-  return regex.test(inputString);
+  if (inputString.match(regexPattern)) {
+      if (inputString.match(regexPattern)[0] == inputString) {
+          return true;
+      } else {
+          return false;
+      }
+  } else {
+      return false;
+  }
 }
+
 
 // Handle form submission
 const form = document.getElementById('testForm');
@@ -112,12 +125,18 @@ form.addEventListener('submit', function(event) {
       result = testRegex(inputString, regexPattern) ? 'accepted' : 'rejected';
       break;
     default:
-      result = 'Invalid Selection';
+      result = 'Tidak Valid, Pilih Jenis Automata';
   }
 
   const resultDiv = document.getElementById('result');
-  resultDiv.textContent = `Input "${inputString}" is ${result}`;
-
+  resultDiv.textContent = `Input "${inputString}" ${result}`;
+  
+  // Mengatur warna latar belakang berdasarkan apakah input diterima atau ditolak
+  if (result === 'accepted') {
+    resultDiv.style.backgroundColor = '#90ee90'; // Warna hijau untuk input yang diterima
+  } else {
+    resultDiv.style.backgroundColor = '#ffcccc'; // Warna merah untuk input yang ditolak
+  }
   
 });
 
@@ -143,38 +162,46 @@ document.getElementById('regexBtn').addEventListener('click', function() {
 // script.js
 
 // script.js
-
 document.addEventListener("DOMContentLoaded", function() {
   const buttons = document.querySelectorAll('#selectButtons button');
+  const regexPatternLabel = document.getElementById('regexPatternLabel');
+  const regexPatternInput = document.getElementById('regexPattern');
 
   buttons.forEach(button => {
-    button.addEventListener('click', function() {
-      const buttonId = this.id;
-      const imageId = buttonId.replace('Btn', 'Image'); // Mengganti 'Btn' menjadi 'Image' untuk mendapatkan ID gambar yang sesuai
-      const image = document.getElementById(imageId); // Mengambil elemen gambar yang sesuai dengan ID
+      button.addEventListener('click', function() {
+          const buttonId = this.id;
+          const imageId = buttonId.replace('Btn', 'Image');
+          const image = document.getElementById(imageId);
 
-      // Menyembunyikan semua gambar
-      const allImages = document.querySelectorAll('.image');
-      allImages.forEach(img => {
-        img.style.display = 'none';
+          const allImages = document.querySelectorAll('.image');
+          allImages.forEach(img => {
+              img.style.display = 'none';
+          });
+
+          if (image) {
+              image.style.display = 'block';
+          }
+
+          console.log("Button clicked with ID:", buttonId);
+
+          // Menampilkan elemen label dan input jika tombol dengan ID 'regexBtn' diklik
+          if (buttonId === 'regexBtn') {
+              regexPatternLabel.style.display = 'block';
+              regexPatternInput.style.display = 'block';
+              regexPatternInput.focus();
+          } else {
+              // Sembunyikan elemen label dan input jika tombol lainnya diklik
+              regexPatternLabel.style.display = 'none';
+              regexPatternInput.style.display = 'none';
+          }
       });
-
-      // Menampilkan gambar yang sesuai
-      if (image) {
-        image.style.display = 'block';
-      }
-      
-      console.log("Button clicked with ID:", buttonId);
-    });
   });
-});
 
-const buttons = document.querySelectorAll('#selectButtons button');
-
-buttons.forEach(button => {
-  button.addEventListener('click', () => {
-    buttons.forEach(btn => btn.classList.remove('active')); // Menghapus kelas active dari semua button
-    button.classList.add('active'); // Menambahkan kelas active ke button yang diklik
+  buttons.forEach(button => {
+      button.addEventListener('click', () => {
+          buttons.forEach(btn => btn.classList.remove('active'));
+          button.classList.add('active');
+      });
   });
 });
 
@@ -247,4 +274,21 @@ editButton4.addEventListener('click', () => {
   window.location.href = 'edit_regex'; // Ganti dengan URL laman edit DFA yang sesuai
 });
 
+//string regex yang tampil
+document.getElementById('regexBtn').addEventListener('click', function() {
+  document.getElementById('selectType').value = 'regex';
 
+  // Menyembunyikan semua input teks dan label
+  const allInputsAndLabels = document.querySelectorAll('label[for="regexPattern"], input#regexPattern');
+  allInputsAndLabels.forEach(element => {
+    element.style.display = 'none';
+  });
+
+  // Menampilkan input teks dan label untuk Regex
+  const regexPatternLabel = document.querySelector('label[for="regexPattern"]');
+  const regexPatternInput = document.getElementById('regexPattern');
+  if (regexPatternLabel && regexPatternInput) {
+    regexPatternLabel.style.display = 'block';
+    regexPatternInput.style.display = 'block';
+  }
+});

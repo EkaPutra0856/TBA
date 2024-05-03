@@ -1,62 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Automata and Regex Tester</title>
-  
-  <link rel="stylesheet" href="../static/css/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../static/css/styles2.css">
+    <link rel="stylesheet" href="../static/css/navbar.css">
+    <title>Automata Project</title>
 </head>
 <body>
-  <div class="navbar">
-    <a href="#" class="active">Menu1</a>
-    <a href="/menu2">Menu2</a>
-    <a href="#">Menu3</a>
-    <a href="#">Menu4</a>
-    <a href="#">Menu5</a>
-  </div>
-
-  <div class="container">
-    <h1>Automata and Regex Tester</h1>
-    
-    <!-- Buttons to select type -->
-    <div id="selectButtons">
-      <button id="dfaBtn">DFA</button>
-      <button id="nfaBtn">NFA</button>
-      <button id="enfaBtn">e-NFA</button>
-      <button id="regexBtn">Regex</button>
+    {% include 'navbar.html' %}
+    <div class="min-h-screen bg-gradient-to-br from-gray-400 to-gray-700 flex flex-col text-black">
+       
+          <section id="home" class="flex flex-col min-h-screen justify-center">
+            <main class="flex flex-col gap-6  text-center ">
+              <h1 class="text-7xl font-bold mb-20">Projek Automata Kelompok 3</h1>
+              <!--<a href="/menu5" class="bg-green-700 active:ring-2 active:ring-green-400 text-gray-200 py-2 px-4 rounded-md text-md font-bold">STARTED</a>-->
+              
+             
+              <p class="text-xl text-gray-400 mt-40">DISUSUN OLEH:<br>
+                L0122043 – DANANG APRIANTO
+                L0122051 – EKA PUTRA MERAVIGLIOSI
+                L0122060 – FAKHIRA AMMARA RAISA<br>
+                L0122077 - IKHSAN ARI NOVIANTO
+                L0122069 – GHINA PUSPAMURTI
+                </p>
+              
+            </main>
+          </section>
     </div>
-
-    <!-- Div for images -->
-    <div id="imageContainer" class="image-container">
-      <!-- Images for DFA, NFA, and others -->
-      <img id="dfaImage" class="image" src="../static/img/dfa.png" alt="DFA Image">
-      <img id="nfaImage" class="image" src="../static/img/nfa.png" alt="NFA Image">
-      <img id="enfaImage" class="image" src="../static/img/enfa.png" alt="e-NFA Image">
-      <img id="regexImage" class="image" src="../static/img/regex.png" alt="Regex Image">
-    </div>
-    <!-- Button for editing -->
-    <button class="editButton1">Edit</button>
-    <button class="editButton2">Edit2</button>
-    <button class="editButton3">Edit3</button>
-    <button class="editButton4">Edit4</button>
-    <div id="result">
-      <!-- Add more images for other types if needed -->
-      <div id="resultText"></div>
-    </div>
-
-    <!-- Form to input string -->
-    <form action="/update_dfa" id="testForm">
-      <input type="hidden" id="selectType" name="selectType"> <!-- Menambahkan input tersembunyi -->
-      <label for="inputString">Input String:</label>
-      <input type="text" id="inputString">
-      <br><br>
-      <button type="submit">Test</button>
-    </form> 
-  </div>
-  
-  <!-- JavaScript to handle form submission and testing -->
-  <script src="../static/js/script.js" type="module"></script>
-  
 </body>
 </html>

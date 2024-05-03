@@ -1,9 +1,9 @@
 import graphviz
 
-def visualize_nfa (data):
+def visualize_enfa (data):
     # Membuat objek Graphviz dengan orientasi horizontal
     dot = graphviz.Digraph()
-    
+    dot.attr(rankdir='LR') 
 
     # Menambahkan node
     for state in data["states"]:

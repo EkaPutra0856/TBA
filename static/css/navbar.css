@@ -1,0 +1,51 @@
+.navbar {
+    background-color: #333;
+    overflow: hidden;
+}
+
+.navbar a {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 10px 20px; /* Tambahkan padding atas dan bawah 10px */
+    text-decoration: none;
+    transition: background-color 0.3s ease; /* Efek transisi smooth untuk perubahan warna latar belakang */
+}
+
+/* Warna latar belakang tautan saat dihover */
+.navbar a:nth-child(1):hover {
+    background-color: rgb(107, 107, 107); /* Warna abu-abu untuk menu 1 */
+    border-radius: 5px; /* Memperbulat sudut untuk menu 1 */
+    padding: 14px 20px; /* Tambahkan padding background hoover */
+} 
+
+.navbar a:nth-child(2):hover {
+    background-color: blue; /* Warna biru untuk menu 2 */
+    border-radius: 5px; /* Memperbulat sudut untuk menu 2 */
+    padding: 14px 20px; /* Tambahkan padding background hoover */
+}
+
+.navbar a:nth-child(3):hover {
+    background-color: green; /* Warna hijau untuk menu 3 */
+    border-radius: 5px; /* Memperbulat sudut untuk menu 3 */
+    padding: 14px 20px; /* Tambahkan padding background hoover */
+}
+
+.navbar a:nth-child(4):hover {
+    background-color: rgb(186, 186, 94); /* Warna kuning untuk menu 4 */
+    border-radius: 5px; /* Memperbulat sudut untuk menu 4 */
+    padding: 14px 20px; /* Tambahkan padding background hoover */
+}
+
+.navbar a:nth-child(5):hover {
+    background-color: red; /* Warna merah untuk menu 5 */
+    border-radius: 5px; /* Memperbulat sudut untuk menu 5 */
+    padding: 14px 20px; /* Tambahkan padding background hoover */
+}
+
+.navbar a:nth-child(6):hover {
+    background-color: purple; /* Warna ungu untuk menu 6 */
+    border-radius: 5px; /* Memperbulat sudut untuk menu 6 */
+    padding: 14px 20px; /* Tambahkan padding background hoover */
+}

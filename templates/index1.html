@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>NFA/e-NFA to DFA</title>
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/css/css_no1.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://unpkg.com/viz.js@1.8.1/viz.js" type="javascript/worker"></script>
+    <script src="https://unpkg.com/d3-graphviz@2.6.1/build/d3-graphviz.js"></script>
+    <link rel="stylesheet" href="../static/css/navbar.css">
+    
+    <script src="../static/js/Input user.js"></script>
+    <script src="../static/js/nfa to dfa.js"></script>
+</head>
+<body>
+    {% include 'navbar.html' %}
+   
+        <div class="container-fluid">
+            <h1>Program Konvert NFA/e-NFA ke DFA</h1>
+            <h4 class="hidden">Berikan Inputan untuk NFA/e-NFA menggunakan Transition (&delta;)</h4>        
+        </div>\
+<div>
+<div class= "kolom">
+    <div class="container ">
+        <p class="instructions hidden">Masukkan inputan NFA atau e-NFA Anda</p>
+        <div class="button-and-form-container mb-3">
+            <form id="nfa" class="form-inline">
+                <div class="mb-3 me-3">
+                    <label for="startStateInput" class="form-label">Start State:</label>
+                    <input type="text" class="form-control" id="startStateInput" placeholder="Masukkan angka atau string">
+                </div>
+                <div class="mb-3">
+                    <label for="finalStatesInput" class="form-label">Final State:</label>
+                    <input type="text" class="form-control" id="finalStatesInput" placeholder="Masukkan angka atau string">
+                </div>
+            </form>
+        
+            <div style="margin-left: 10px; margin-bottom: 24px;">
+                <button type="button" class="btn btn-danger me-3" id="resetBtn" title="Reset the current NFA">Reset</button>
+            </div>
+        </div>
+        <div class="flex">
+        <label for="currentStateInput" class="form-label">Current State:</label>
+        <label for="inputSymbol" class="form-label">Input Symbol:</label>
+        <label for="nextStates" class="form-label">Next States:</label>
+       </div>
+        <div id="nfa-transitions" class="mb-3">
+    
+            <div class="production-row">
+               
+                <input type="text" id="currentStateInput" class="form-control current-state-input">
+                
+                
+                <input type="text" id="inputSymbol" class="form-control input-symbol" placeholder="&epsilon;">
+                
+                
+                <input type="text" id="nextStates" class="form-control next-states">
+                
+                <span class="glyphicon glyphicon-remove-circle remove-button" title="Remove this transition"></span>
+            </div>
+        </div>
+        
+        <button id="new-transition" type="button" class="btn btn-outline-primary mb-3"
+            title="Create a new transition">
+            <span class="glyphicon glyphicon-plus"></span> tambah transition
+        </button>
+    </div> 
+</div>
+
+
+    <div class="container2"> 
+        <h1 id="verify-update-debug">NFA/e-NFA</h1>
+        <p class="hidden">Inputan anda:</p>
+        <span id="current-nfa-status"></span>
+        <div id="current-nfa"></div>
+        <h1>DFA</h1>
+        <div class="row mt-4" style= "margin-bottom: 50px">
+            <div class="col-lg" style= "margin-bottom: 50px">
+                <span id="current-dfa-status"></span>
+                <div id="current-dfa"></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

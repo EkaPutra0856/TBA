@@ -1,0 +1,15 @@
+digraph {
+    graph [rankdir=LR]
+    node [shape=circle]
+    D [shape=doublecircle]
+    A -> B [label=" a "]
+    A -> A [label=" b "]
+    B -> B [label=" a "]
+    B -> C [label=" b "]
+    C -> B [label=" a "]
+    C -> D [label=" b "]
+    D -> B [label=" a "]
+    D -> A [label=" b "]
+    start [label="Start" shape=none]
+    start -> A
+}

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Automata and Regex Tester</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../static/css/navbar.css">
+  <link rel="stylesheet" href="../static/css/styles.css">
+  <style>
+   
+  </style>
+</head>
+<body>
+  {% include 'navbar.html' %}
+  {% if error %}
+  <div id="error-panel" class="error-panel fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-md text-sm shadow-lg z-50">
+      <div id="error-message" class="text-red-600">{{ error }}</div>
+  </div>
+  {% endif %}
+  
+  <div class="container">
+    <h1 class="text-4xl font-bold text-center mb-8">Automata and Regex Tester</h1>
+
+    
+    <!-- Buttons to select type -->
+    <div id="selectButtons" class="flex justify-center gap-4">
+      <button id="dfaBtn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">DFA</button>
+      <button id="nfaBtn" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">NFA</button>
+      <button id="enfaBtn" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">e-NFA</button>
+      <button id="regexBtn" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Regex</button>
+    </div>
+    
+<!-- Label and input text -->
+<div class="flex flex-col pl-10 rounded-lg p-8">
+<label for="regexPattern" id="regexPatternLabel" class="hidden">Pattern:</label><br>
+<input type="text" id="regexPattern" name="regexPattern" readonly class="hidden"><br><br>
+</div>
+
+
+<!-- Div for images -->
+<div id="imageContainer" class="image-container">
+    <!-- Images for DFA, NFA, and others -->
+    <img id="dfaImage" class="image" src="../static/img/dfa.png" alt="DFA Image">
+    <img id="nfaImage" class="image" src="../static/img/nfa.png" alt="NFA Image">
+    <img id="enfaImage" class="image" src="../static/img/enfa.png" alt="e-NFA Image">
+    <img id="regexImage" class="image" src="../static/img/regex.png" alt="Regex Image">
+</div>
+
+
+
+    <!-- Button for editing -->
+    <div class="flex justify-center ">
+      <button class="editButton1 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit</button>
+      <button class="editButton2 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Edit</button>
+      <button class="editButton3 bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">Edit</button>
+      <button class="editButton4 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Edit</button>
+    </div>
+    
+
+
+    <div id="result" class="bg-gray-200 mt-4 w-96 mx-auto  rounded-md">
+      <div id="resultText"></div>
+      {%if valid == True%}
+      <p>Input {{string}} Is Accepted</p>
+      {% endif %}
+      {%if valid == False%}
+      <p>Input {{string}} Is Rejected</p>
+      {% endif %}
+  </div>
+  
+    
+
+    <!-- Form to input string -->
+    <form action="/update_dfa" id="testForm", methods='post'>
+      <input type="hidden" id="selectType" name="selectType"> <!-- Menambahkan input tersembunyi -->
+      <label for="inputString">Input String:</label>
+      <input type="text" id="inputString">
+      <br><br>
+      <button type="submit">Test</button>
+    </form> 
+    
+  </div>
+  
+  <!-- JavaScript to handle form submission and testing -->
+  <script src="../static/js/script.js" type="module"></script>
+  <script src="../static/js/edit_regex.js" type="module"></script>
+<script>
+  // Ambil referensi ke elemen error-panel dan error-message
+const errorPanel = document.getElementById('error-panel');
+const errorMessage = document.getElementById('error-message');
+
+errorPanel.classList.remove('none');
+// Tampilkan panel error dan isi pesan kesalahan
+errorPanel.classList.remove('hidden');
+errorMessage.innerText = '{{ error }}';
+
+// Setelah 1 detik, sembunyikan panel error dan hapus pesan kesalahan
+setTimeout(() => {
+    errorPanel.classList.add('hidden');
+    errorMessage.innerText = '';
+}, 1000);
+
+</script>
+  
+</body>
+</html>

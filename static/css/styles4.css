@@ -1,0 +1,145 @@
+body{
+    margin: 0;
+}
+
+h1, h4,p {
+    text-align: center;
+}
+
+.mb-3 {
+    justify-content: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#nfa {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#nfa-transitions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.production-row {
+    display: flex;
+    align-items: center;
+}
+
+#new-transition {
+    margin-top: 20px;
+}
+
+.header {
+    background-color: #343a40;
+    color: white;
+    padding: 20px;
+}
+
+#new-transition {
+    margin-top: 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#new-transition:hover {
+    background-color: #0056b3;
+}
+
+.remove-button {
+    cursor: pointer;
+    margin-left: 5px;
+    color: red;
+}
+
+.remove-button:hover {
+    color: darkred;
+}
+
+body {
+    background-color: #f8f9fa; /* Warna latar belakang */
+}
+
+.container-fluid {
+    background-color: #343a40; /* Warna latar belakang header */
+    color: white; /* Warna teks header */
+    padding: 20px;
+}
+
+.btn-danger {
+    background-color: #dc3545; /* Warna tombol Reset */
+    border-color: #dc3545;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+}
+
+.btn-outline-primary {
+    color: #007bff; /* Warna teks tombol tambah transition */
+    border-color: #007bff;
+}
+
+.btn-outline-primary:hover {
+    color: #0056b3;
+    border-color: #0056b3;
+}
+
+.form-control {
+    border-color: #ced4da; /* Warna border input */
+}
+
+.form-control:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+}
+
+.instructions {
+    color: #007bff; /* Warna teks instruksi */
+}
+
+#current-nfa-status, #current-dfa-status {
+    font-weight: bold; /* Teks status NFA dan DFA menjadi tebal */
+}
+
+#current-nfa, #current-dfa {
+    border: 2px solid #007bff; /* Garis tepi untuk kotak status NFA dan DFA */
+    padding: 10px; /* Ruang padding di dalam kotak status */
+    margin-top: 20px; /* Jarak atas dari kotak status */
+}
+
+
+#nfa-transitions {
+    border: 2px solid #007bff; /* Garis tepi untuk kotak transisi NFA */
+    padding: 10px; /* Ruang padding di dalam kotak transisi */
+    margin-top: 20px; /* Jarak atas dari kotak transisi */
+}
+
+.production-row {
+    margin-bottom: 10px; /* Jarak bawah antara baris transisi */
+}
+
+#resetBtn {
+    background-color: #dc3545; /* Warna tombol Reset */
+    color: white; /* Warna teks tombol Reset */
+    border: none; /* Hapus border tombol Reset */
+    padding: 10px 20px; /* Ruang padding tombol Reset */
+    border-radius: 5px; /* Sudut melengkung tombol Reset */
+    cursor: pointer; /* Kursor jadi tanda tangan saat di atas tombol Reset */
+}
+
+#resetBtn:hover {
+    background-color: #c82333; /* Warna tombol Reset saat dihover */
+}

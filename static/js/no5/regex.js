@@ -1,2 +1,2 @@
-const regexPattern = /a+aba*bc/;
+const regexPattern = '(ab*)|(a|b)*';
 export { regexPattern };

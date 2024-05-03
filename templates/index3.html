@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/styles3.css">
+    <link rel="stylesheet" href="../static/css/navbar.css">
+  
+    <title>DFA MINIMIZATION TBA</title>
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <div class="border">
+        <h1 class="text-4xl font-bold text-center mb-8 mt-4">DFA MINIMIZATION TBA</h1>
+        <form method="post">
+            <label for="states">State (ex: A,B,C):</label>
+            <input type="text" id="states" name="states" required><br><br>
+
+            <label for="alphabet">Alfabet (ex: a,b):</label>
+            <input type="text" id="alphabet" name="alphabet" required><br><br>
+
+            <label for="transition_function">Fungsi Transisi :</label>
+            <label for="transition_function">Ex: A, a ->B(enter)</label>
+            <label for="transition_function">A, b ->A </label>
+
+            <textarea id="transition_function" name="transition_function" rows="5" required></textarea><br><br>
+
+            <label for="start_state">State Awal:</label>
+            <input type="text" id="start_state" name="start_state" required><br><br>
+
+            <label for="accept_states">State Penerima (ex: B,C):</label>
+            <input type="text" id="accept_states" name="accept_states" required><br><br>
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+</html>

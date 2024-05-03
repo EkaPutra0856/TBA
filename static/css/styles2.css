@@ -1,0 +1,130 @@
+body {
+    margin: 0; /* Hilangkan margin pada body */
+}
+
+/* Card styling */
+.card {
+   
+    margin-bottom: 20px;
+    margin: 20px; /* Ruang luar kartu */
+    border: 1px solid #ccc; /* Garis tepi kartu */
+    border-radius: 8px; /* Sudut bulatan kartu */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Efek bayangan kartu */
+    position: relative;
+}
+
+.card-header {
+    padding: 10px 20px; /* Atur ruang bantal pada header kartu */
+    background-color: #007bff; /* Warna latar belakang header kartu */
+    color: white; /* Warna teks pada header kartu */
+    border-top-left-radius: 8px; /* Sudut bulatan kiri atas */
+    border-top-right-radius: 8px; /* Sudut bulatan kanan atas */
+}
+
+
+.card-body {
+    padding: 20px; /* Ruang bantal di dalam body kartu */
+    position: relative;
+}
+
+/* Form styling */
+.form-control {
+    width: calc(100% - 24px); /* Lebar form kontrol */
+    padding: 8px; /* Ruang bantal di dalam form kontrol */
+    margin-top: 6px; /* Ruang atas form kontrol */
+    margin-bottom: 16px; /* Ruang bawah form kontrol */
+    box-sizing: border-box; /* Box model: nilai padding dan border tidak menambah lebar total */
+}
+
+.col-auto {
+    padding: 0; /* Hilangkan padding pada kolom otomatis */
+}
+
+/* Button styling */
+.btn {
+    background-color: #007bff; /* Warna latar belakang tombol */
+    color: white; /* Warna teks tombol */
+    padding: 10px 20px; /* Ruang bantal di sekitar tombol */
+    border: none; /* Hilangkan border tombol */
+    border-radius: 4px; /* Sudut bulatan pada tombol */
+    cursor: pointer; /* Tampilan kursor saat mengarahkan ke tombol */
+    transition: background-color 0.3s ease; /* Animasi perubahan warna latar belakang */
+}
+
+.btn:hover {
+    background-color: #0056b3; /* Warna latar belakang tombol saat dihover */
+}
+
+/* Table styling */
+.table {
+    width: 100%; /* Lebar tabel */
+    border-collapse: collapse; /* Gabungkan batas sel */
+    text-align: center; /* Teks terpusat */
+}
+
+.table th,
+.table td {
+    padding: 8px; /* Ruang bantal di dalam sel */
+    text-align: left; /* Posisi teks dalam sel */
+    border-bottom: 1px solid #ddd; /* Garis bawah setiap sel */
+    text-align: center; /* Teks terpusat */
+}
+
+.table th {
+    background-color: #f0f0f0; /* Warna latar belakang header tabel */
+    font-weight: bold; /* Ketebalan teks header tabel */
+    text-align: center; /* Teks terpusat */
+}
+
+/* Alert box styling */
+.alert {
+    padding: 10px; /* Ruang bantal di dalam kotak peringatan */
+    margin-bottom: 16px; /* Ruang bawah kotak peringatan */
+    border-radius: 4px; /* Sudut bulatan kotak peringatan */
+}
+
+.alert-success {
+    background-color: #d4edda; /* Warna latar belakang kotak peringatan sukses */
+    color: #155724; /* Warna teks kotak peringatan sukses */
+    border-color: #c3e6cb; /* Warna border kotak peringatan sukses */
+}
+
+.alert-danger {
+    background-color: #f8d7da; /* Warna latar belakang kotak peringatan gagal */
+    color: #721c24; /* Warna teks kotak peringatan gagal */
+    border-color: #f5c6cb; /* Warna border kotak peringatan gagal */
+}
+
+/* Image styling */
+.card-body img {
+    max-width: 100%; /* Lebar maksimum gambar */
+    height: auto; /* Tinggi otomatis sesuai aspek rasio */
+    margin-top: 16px; /* Ruang atas gambar */
+}
+/* Tambahkan border pada input string dan input regular expression */
+input[type="text"] {
+    border: 1px solid #ccc; /* Tambahkan border 1px solid dengan warna abu-abu */
+    border-radius: 4px; /* Tambahkan sudut bulatan pada border */
+}
+
+.alert,
+.table,
+.card-body,
+.card-body img {
+    margin-top: 20px; /* Jarak antara elemen dengan navbar */
+}
+
+        /* tambahkan styling untuk container konten */
+        .content-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* konten dimulai dari atas */
+            min-height: calc(100vh - 80px); /* set tinggi konten agar tidak menutupi navbar */
+           
+        }
+
+        /* atur lebar konten */
+        .content {
+            width: 75%; /* 75% dari lebar layar */
+            max-width: 1200px; /* batasi lebar maksimum */
+        }

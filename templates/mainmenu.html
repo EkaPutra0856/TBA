@@ -1,190 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.4.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../static/css/MainMenu.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hoverable Containers</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    .container {
+      transition: transform 0.3s ease-in-out;
+    }
+    .container:hover {
+      transform: scale(1.05);
+    }
+  </style>
 </head>
-<body>
-    <header>
-        <nav id="headernav">
-            <a href="">Home</a>
-            <a href="">Contacts</a>
-            <a href="">Info</a>
-        </nav>
-    </header>
-    
+<body class="min-h-screen bg-gray-200">
+  <div class="text-center mb-4 text-3xl font-bold text-gray-800 pt-2 hidden">Automata</div>
+  <div class="flex items-center justify-center">
+    <div id="mainContent" class="w-3/4 custom-height"> <!-- Membuat lebar menjadi 75 persen dan tinggi tidak lebih dari tinggi layar -->
+      <div class="flex flex-grow pl-6 pr-6">
+        <div class="w-3/5 flex flex-col">
+          <div class="text-center mb-4 text-3xl font-bold text-gray-800 pt-2 invisible">p</div>
+          <a href="/menu1" class="container mx-auto h-56 bg-blue-400 rounded-md flex items-center justify-center mb-8">
+            <span class="text-white text-2xl font-bold">Container 1</span>
+          </a>
+          <a href="/menu2" class="container mx-auto h-56 bg-green-400 rounded-md flex items-center justify-center">
+            <span class="text-white text-2xl font-bold">Container 2</span>
+          </a>
+        </div>
+        <div class="ml-8 w-full p-2 pt-8">
+          <a href="/menu3" class="container mx-auto h-40 bg-yellow-500 rounded-md flex items-center justify-center mb-4">
+            <span class="text-white text-2xl font-bold">Container 3</span>
+          </a>
+          <a href="/menu4" class="container mx-auto h-40 bg-red-500 rounded-md flex items-center justify-center mb-4">
+            <span class="text-white text-2xl font-bold">Container 4</span>
+          </a>
+          <a href="/menu5" class="container mx-auto h-40 bg-purple-500 rounded-md flex items-center justify-center">
+            <span class="text-white text-2xl font-bold">Container 5</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <!-- carousel -->
-    <div class="carousel">
-        <!-- list item -->
-        <div class="list row">
-            <div class="item col-lg-3 col-md-6">
-                <img src="image/img1.jpg">
-                <div class="content">
-                    <div class="author">OculoScan</div>
-                    <div class="title">Eye Health</div>
-                    <div class="topic">Detection</div>
-                    <div class="des">
-                        <!-- lorem 50 -->
-                        Fitur "Eye Health Detection" pada OculoScan merupakan salah satu fitur utama yang dirancang untuk memberikan pengguna informasi yang akurat dan penting mengenai kesehatan mata mereka. Fitur ini menggunakan teknologi Neural Network yang canggih untuk menganalisis gambar mata yang diunggah oleh pengguna dan mendeteksi adanya potensi penyakit atau kondisi yang perlu perhatian.
-                    </div>
-                    <div class="buttons">
-                        <button>SEE MORE</button>
-                    </div>
-                </div>
-            </div>
-            <div class="item col-lg-3 col-md-6">
-                <img src="image/img2.jpg">
-                <div class="content">
-                    <div class="author">OculoScan</div>
-                    <div class="title">Medisearch</div>
-                    <div class="topic">Order</div>
-                    <div class="des">
-                        Fitur "MediSearch & Order" dirancang untuk memberikan pengguna kemampuan untuk mencari produk-produk kesehatan yang mereka butuhkan dengan cepat dan mudah, serta melakukan pemesanan secara langsung melalui platform atau aplikasi yang disediakan. Fitur ini menyediakan pengalaman belanja yang terintegrasi dan praktis bagi pengguna yang memerlukan produk-produk kesehatan, mulai dari obat-obatan, suplemen, peralatan medis, hingga produk kesehatan lainnya.   
-                    </div>
-                    <div class="buttons">
-                        <button>SEE MORE</button>
-                    </div>
-                </div>
-            </div>
-            <div class="item col-lg-3 col-md-6">
-                <img src="image/img3.jpg">
-                <div class="content">
-                    <div class="author">OculoScan</div>
-                    <div class="title">E-Clinic</div>
-                    <div class="topic">Connect</div>
-                    <div class="des">
-                        "eClinic Connect" adalah fitur inovatif yang dirancang untuk memberikan akses mudah dan cepat bagi pengguna untuk melakukan konsultasi medis secara virtual dengan para profesional kesehatan. Dengan menggunakan teknologi telemedis yang canggih, fitur ini menghubungkan pengguna dengan dokter dan tenaga medis terkualifikasi tanpa harus meninggalkan rumah mereka. 
-                    </div>
-                    <div class="buttons">
-                        <button>SEE MORE</button>
-                    </div>
-                </div>
-            </div>
-            <div class="item col-lg-3 col-md-6">
-                <img src="image/img4.jpg">
-                <div class="content">
-                    <div class="author">OculoScan</div>
-                    <div class="title">Health Track</div>
-                    <div class="topic">Records</div>
-                    <div class="des">
-                        Fitur "Health Track Records" adalah solusi yang memungkinkan pengguna untuk mencatat dan melacak riwayat kesehatan mereka secara komprehensif. Dengan fitur ini, pengguna dapat mengelola semua informasi penting tentang kesehatan mereka, mulai dari riwayat penyakit, alergi, riwayat obat-obatan, hingga hasil tes laboratorium dan pemeriksaan medis lainnya.   
-                    </div>
-                    <div class="buttons">
-                        <button>SEE MORE</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- list thumnail -->
-        <div class="thumbnail row">
-            <div class="item col-lg-3 col-md-6">
-                <img src="image/img1.jpg">
-                <div class="content">
-                    <div class="title">
-                        Eye Health Detection
-                    </div>
-                    <div class="description">
-                        Description
-                    </div>
-                </div>
-            </div>
-            <div class="item col-lg-3 col-md-6">
-                <img src="image/img2.jpg">
-                <div class="content">
-                    <div class="title">
-                        MediSearch Order
-                    </div>
-                    <div class="description">
-                        Description
-                    </div>
-                </div>
-            </div>
-            <div class="item col-lg-3 col-md-6">
-                <img src="image/img3.jpg">
-                <div class="content">
-                    <div class="title">
-                        E-Clinic Connect
-                    </div>
-                    <div class="description">
-                        Description
-                    </div>
-                </div>
-            </div>
-            <div class="item col-lg-3 col-md-6">
-                <img src="image/img4.jpg">
-                <div class="content">
-                    <div class="title">
-                        Health Track Records
-                    </div>
-                    <div class="description">
-                        Description
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- next prev -->
-        <div class="arrows">
-            <button id="prev"><</button>
-            <button id="next">></button>
-        </div>
-        <!-- time running -->
-        <div class="time"></div>
-    </div>
-    
-    <div class="containerCard1 hidden">
-            <div class="card">
-                <div class="imgbox">
-                    <img src="image/mata1.jpg">
-                </div>
-                <div class="content">
-                    <h2>Mata 1</h2>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat
-                        doloribus vitae fugit enim repudiandae
-                    </p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="imgbox">
-                    <img src="image/mata2.jpeg">
-                </div>
-                <div class="content">
-                    <h2>Mata 2</h2>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat
-                        doloribus vitae fugit enim repudiandae
-                    </p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="imgbox">
-                    <img src="image/mata3.jpg">
-                </div>
-                <div class="content">
-                    <h2>Mata 3</h2>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat
-                        doloribus vitae fugit enim repudiandae
-                    </p>
-                </div>
-            </div>
-        </div>
-    <div class="containerCard2 hidden">
-        <iframe src="page2.html" width="101.2%" height="500px" frameborder="0"></iframe>
-    </div>
-    
-    <div class="containerCard3 hidden">
-        <iframe src="page3.html" width="101.2%" height="500px" frameborder="0"></iframe>
-    </div>
-    
-    <div class="containerCard4 hidden">
-        <iframe src="page4.html" width="101.2%" height="500px" frameborder="0"></iframe>
-    </div>
+  <script>
+    window.onload = function() {
+      // Scroll ke bawah sebesar 30px setelah 1 detik
+      setTimeout(function() {
+        window.scrollBy(0, 30);
+      }, 1000);
 
-    <script src="../static/js/menu.js"></script>
+      // Scroll ke bagian paling bawah halaman secara halus
+      setTimeout(function() {
+        window.scrollTo({
+          top: document.body.scrollHeight,
+          behavior: 'smooth'
+        });
+      },1000 ); // Ubah angka 2000 sesuai kebutuhan, ini berarti akan scroll ke bawah setelah 2 detik
+    };
+  </script>
 </body>
 </html>

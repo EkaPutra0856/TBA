@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regular Expression to ε-NFA Converter</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/styles2.css">
+    <link rel="stylesheet" href="../static/css/navbar.css">
+ 
+</head>
+
+<body class="overflow-y-auto">    
+    {% include 'navbar.html' %}
+    <div class="content-container">
+        <div class="content">
+            <h1 class="text-4xl font-bold text-center mb-8 mt-4">Regular Expression to ε-NFA Converter</h1>
+            <div class="mx-auto">
+                <div class="card">
+                    
+                    <div class="card-body">
+                        <form action="" method="POST" enctype="multipart/form-data">
+                            <div class="mb-3 row">
+                                <label for="regex" class="col-sm-2 col-form-label">Regular Expression</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="regex" name="regex" required>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="input_string" class="col-sm-2 col-form-label">Input String</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="input_string" name="input_string" required>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <button type="submit" class="btn">Convert and Match</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            {% if transition_table %}
+            <div class="card mt-8 text-center"> <!-- Tambahkan margin top untuk menjaga jarak dari navbar -->
+                <div class="card-header text-center">
+                    Transition Table
+                </div>
+                <div class="card-body ">
+                    {% if result is not none %}
+                    <div class="mx-auto">
+                        {% if accepted %}
+                        <div class="alert alert-success" role="alert">
+                            The input string is accepted by the ε-NFA constructed from the regular expression.
+                        </div>
+                        {% else %}
+                        <div class="alert alert-danger" role="alert">
+                            The input string is not accepted by the ε-NFA constructed from the regular expression.
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>State</th>
+                                <th>Symbol</th>
+                                <th>Next State</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for row in transition_table %}
+                            <tr>
+                                <td>{{ row[0] }}</td>
+                                <td>{{ row[1] }}</td>
+                                <td>{{ row[2] }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if nfa_image %}
+            <div class="mx-auto mt-8"> <!-- Tambahkan margin top untuk menjaga jarak dari navbar -->
+                <div class="card">
+                    <div class="card-header text-center">
+                        ε-NFA Visualization
+                    </div>
+                    <div class="card-body text-center">
+                        <img src="{{ url_for('static', filename=nfa_image) }}" alt="Epsilon-NFA Visualization">
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+
+</html>

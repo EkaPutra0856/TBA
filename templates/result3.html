@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/styles3.css">
+    <link rel="stylesheet" href="../static/css/navbar.css">
+    <title>DFA Minimization Result</title>
+</head>
+
+<body class="bg-gray-100">
+    {% include 'navbar.html' %}
+    <h1 class="text-4xl font-bold text-center mb-8 mt-8">HASIL MINIMIZATION DFA</h1>
+    <div class="container w-1/2 mx-auto py-8 shadow-lg rounded-lg mt-2">
+        
+
+        <h2 class="text-4xl font-bold text-center mb-8">DFA Sebelum Minimasi</h2>
+        <div class="flex justify-center">
+            <img src="{{ url_for('static', filename=file_before) }}" alt="DFA Sebelum Minimasi"
+                class="max-w-full h-auto">
+        </div>
+
+        <h2 class="text-4xl font-bold text-center mb-8 mt-8">DFA Setelah Minimasi</h2>
+        <div class="flex justify-center">
+            <img src="{{ url_for('static', filename=file_after) }}" alt="DFA Setelah Minimasi"
+                class="max-w-full h-auto">
+        </div>
+
+        <div class="text-center mt-8 bg-blue-500 py-2 w-1/2 mx-auto">
+            <a href="{{ url_for('index') }}" class="text-white hover:underline">Kembali ke Beranda</a>
+        </div>
+        
+    </div>
+</body>
+
+</html>
