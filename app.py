@@ -20,7 +20,6 @@ from static.py.no4 import equivalent, visualize_dfa
 
 app = Flask(__name__)
 
-
 @app.route('/edit_dfa')
 def editdfa():
     return render_template('edit_dfa.html')
@@ -337,6 +336,8 @@ def no3():
         return render_template('result3.html', file_before=file_before, file_after=file_after)
 
     return render_template('index3.html')
+
+
 
 if __name__ == '__main__':
     NFAState.reset_state_count()
