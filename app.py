@@ -307,7 +307,7 @@ def no2():
             accepted = True
         else:
             accepted = False
-
+    
         return render_template('index2.html', result=True, accepted=accepted, transition_table=transition_table, nfa_image=nfa_image)
 
     return render_template('index2.html', result=None, transition_table=None)
@@ -337,7 +337,43 @@ def no3():
 
     return render_template('index3.html')
 
+@app.route('/submit', methods=['POST'])
+def submit():
+    DFA1 = {}
+    DFA1['states'] = request.form['states1'].split()
+    DFA1['input_symbols'] = request.form['symbol1'].split()
+    DFA1['initial_state'] = request.form['initialState1']
+    DFA1['final_states'] = request.form['finalStates1'].split()
+    DFA1['transitions'] = {}
+    for state in DFA1['states']:
+        DFA1['transitions'][state] = {}
+        for symbol in DFA1['input_symbols']:
+            next_state = request.form.get(f'transitions1_{state}_{symbol}')
+            DFA1['transitions'][state][symbol] = next_state
+    
+    DFA2 = {}
+    DFA2['states'] = request.form['states2'].split()
+    DFA2['input_symbols'] = request.form['symbol2'].split()
+    DFA2['initial_state'] = request.form['initialState2']
+    DFA2['final_states'] = request.form['finalStates2'].split()
+    DFA2['transitions'] = {}
+    for state in DFA2['states']:
+        DFA2['transitions'][state] = {}
+        for symbol in DFA2['input_symbols']:
+            next_state = request.form.get(f'transitions2_{state}_{symbol}')
+            DFA2['transitions'][state][symbol] = next_state
 
+    visualize_dfa(DFA1, "static/img/DFA1")
+    visualize_dfa(DFA2, "static/img/DFA2")
+
+    result = equivalent(DFA1, DFA2)
+
+    if result:
+        result_message = "Both DFA Are Equivalent!"
+    else:
+        result_message = "Both DFA Are Not Equivalent!"
+
+    return render_template('index4.html', result=result_message)
 
 if __name__ == '__main__':
     NFAState.reset_state_count()

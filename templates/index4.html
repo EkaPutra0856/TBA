@@ -96,6 +96,8 @@
       justify-content: space-between;
     }
   </style>
+  <link rel="stylesheet" href="../static/css/styles3.css">
+    <link rel="stylesheet" href="../static/css/navbar.css">
 </head>
 
 <body>
@@ -111,14 +113,14 @@
         <h4 class="col-5">Graphic of DFA 2</h4>
       </div>
       <div class="row justify-content-evenly mb-5">
-        <img class="col-5" id="DFA1" src="{{ url_for('static', filename='DFA1.png') }}" alt="DFA1">
-        <img class="col-5" id="DFA2" src="{{ url_for('static', filename='DFA2.png') }}" alt="DFA2">
+        <img class="col-5" id="DFA1" src="../static/img/DFA1.png" alt="DFA1">
+        <img class="col-5" id="DFA2" src="../static/img/DFA2.png" alt="DFA2">
     </div>
     
       <a href="/">Back</a>
     </div>
     {% else %}
-    <form action="/menu4" id="dfaForm" method="post" class="mt-4">
+    <form action="/submit" id="dfaForm" method="post" class="mt-4">
       <h3>DFA 1</h3>
       <div class="input-group">
         <label for="states1">States:</label>

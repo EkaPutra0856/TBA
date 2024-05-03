@@ -1,4 +1,4 @@
-const dfa = {'q0': {'0': 'q1', '1': 'q2'}, 'q1': {'0': 'q1', '1': 'q2'}, 'q2': {'0': 'q3', '1': 'q2'}, 'q3': {'0': 'q3', '1': 'q3'}};
-const startState = 'q0';
-const acceptingStates = ['q3'];
+const dfa = {'q1': {'d': 'q1', 'c': 'q2'}, 'q2': {'d': 'q2', 'c': 'q1'}};
+const startState = 'q1';
+const acceptingStates = ['q1'];
 export { dfa, startState, acceptingStates };
