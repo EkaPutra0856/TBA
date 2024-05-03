@@ -338,58 +338,7 @@ def no3():
 
     return render_template('index3.html')
 
-
-
 if __name__ == '__main__':
     NFAState.reset_state_count()
     app.run(debug=True)
 
-# Inisialisasi aplikasi Flask di luar fungsi-fungsi
-def create_app():
-    return Flask(__name__, static_folder='statics')
-
-def get_app():
-    app = create_app()
-    return app
-
-# Mengambil instance aplikasi Flask
-app = get_app()
-
-
-@app.route('/menu4', methods=['POST'])
-def no4():
-    DFA1 = {}
-    DFA1['states'] = request.form['states1'].split()
-    DFA1['input_symbols'] = request.form['symbol1'].split()
-    DFA1['initial_state'] = request.form['initialState1']
-    DFA1['final_states'] = request.form['finalStates1'].split()
-    DFA1['transitions'] = {}
-    for state in DFA1['states']:
-        DFA1['transitions'][state] = {}
-        for symbol in DFA1['input_symbols']:
-            next_state = request.form.get(f'transitions1_{state}_{symbol}')
-            DFA1['transitions'][state][symbol] = next_state
-    
-    DFA2 = {}
-    DFA2['states'] = request.form['states2'].split()
-    DFA2['input_symbols'] = request.form['symbol2'].split()
-    DFA2['initial_state'] = request.form['initialState2']
-    DFA2['final_states'] = request.form['finalStates2'].split()
-    DFA2['transitions'] = {}
-    for state in DFA2['states']:
-        DFA2['transitions'][state] = {}
-        for symbol in DFA2['input_symbols']:
-            next_state = request.form.get(f'transitions2_{state}_{symbol}')
-            DFA2['transitions'][state][symbol] = next_state
-
-    visualize_dfa(DFA1, "statics/DFA1")
-    visualize_dfa(DFA2, "statics/DFA2")
-
-    result = equivalent(DFA1, DFA2)
-
-    if result:
-        result_message = "Both DFA Are Equivalent!"
-    else:
-        result_message = "Both DFA Are Not Equivalent!"
-
-    return render_template('index4.html', result=result_message)
